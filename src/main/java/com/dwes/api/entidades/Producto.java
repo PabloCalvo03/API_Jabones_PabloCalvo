@@ -1,9 +1,13 @@
 package com.dwes.api.entidades;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -32,7 +36,18 @@ public class Producto {
     @Min(value = 0, message = "El stock no puede ser negativo")
     private Integer stock;
     
-    private String imagenUrl;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Categoria> categorias;
+    
+    public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	private String imagenUrl;
 
 	public Long getId() {
 		return id;

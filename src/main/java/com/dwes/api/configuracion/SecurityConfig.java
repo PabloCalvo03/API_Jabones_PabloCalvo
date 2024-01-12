@@ -17,9 +17,11 @@ public class SecurityConfig{
     public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationConfiguration authenticationConfiguration) throws Exception {
         http
         .authorizeHttpRequests((authz) -> authz
-               // .requestMatchers(HttpMethod.GET, "/api/v1/jabones/**").permitAll() 
-                .requestMatchers("/api/v1/jabones/**").permitAll() // Permite todas las solicitudes a /api/v1/jabones/**
-                .requestMatchers("/**").permitAll() // Permite todas las solicitudes a Swagger UI
+        		//.requestMatchers(HttpMethod.GET, "/api/v1/jabones/**").permitAll() 
+        		.requestMatchers("/**").permitAll()
+                .requestMatchers("/api/v1/jabones/**").permitAll()
+                .requestMatchers("/api/v1/categorias/**").permitAll()// Permite todas las solicitudes a /api/v1/jabones/**
+                 // Permite todas las solicitudes a Swagger UI
                 .anyRequest().authenticated()); // Todas las demás solicitudes necesitan autenticación
         
 

@@ -8,10 +8,24 @@ import org.springframework.context.annotation.Configuration;
 public class SpringDocConfig {
 
     @Bean
-    public GroupedOpenApi publicApi() {
+    public GroupedOpenApi publicApiGeneral() {
+        return GroupedOpenApi.builder()
+            .group("general-public")
+            .pathsToMatch("/api/v1/jabones/**", "/api/v1/categorias/**")
+            .build();
+    }
+    @Bean
+    public GroupedOpenApi publicApiJabones() {
         return GroupedOpenApi.builder()
             .group("jabones-public")
             .pathsToMatch("/api/v1/jabones/**")
+            .build();
+    }
+    @Bean
+    public GroupedOpenApi publicApiCategorias() {
+        return GroupedOpenApi.builder()
+            .group("categorias-public")
+            .pathsToMatch("/api/v1/categorias/**")
             .build();
     }
     
